@@ -7,3 +7,6 @@ This package provides extension methods for Unity's UGUI system, making it easie
 3. Click on the `+` button in the top left corner.
 4. Select `Add package from git URL...`.
 5. Enter the URL of this package repository: `(https://github.com/yunst047/unity-ugui.extension.git?path=Assets/unity-ugui.extension)`.
+
+# Warning
+This package only includes extension methods for TextMeshPro not Legacy Text.
