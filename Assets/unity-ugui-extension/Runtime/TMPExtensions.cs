@@ -7,6 +7,57 @@ namespace Yunst.UGUI.Extension
 {
     public static class TMPExtensions
     {
+        
+        /// <summary>
+        /// Sets the text.
+        /// </summary>
+        /// <param name="text">The text to display.</param>
+        public static void SetTMPText(this TextMeshProUGUI textMeshPro, string text)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.SetText(text);
+        }
+        
+        /// <summary>
+        /// Sets the text and font size.
+        /// </summary>
+        /// <param name="text">The text to display.</param>
+        /// <param name="fontSize">The font size to set.</param>
+        public static void SetTMPText(this TextMeshProUGUI textMeshPro, string text, float fontSize)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.SetText(text);
+            textMeshPro.fontSize = fontSize;
+        }
+        
+        /// <summary>
+        /// Sets the text and rich text option.
+        /// </summary>
+        /// <param name="text">The text to display.</param>
+        /// <param name="richText">Whether to enable rich text.</param>
+        public static void SetTMPText(this TextMeshProUGUI textMeshPro, string text, bool richText)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.SetText(text);
+            textMeshPro.richText = richText;
+        }
+        
+        /// <summary>
+        /// Sets the text, font size, and rich text option.
+        /// </summary>
+        /// <param name="text">The text to display.</param>
+        /// <param name="fontSize">The font size to set.</param>
+        /// <param name="richText">Whether to enable rich text.</param>
+        public static void SetTMPText(this TextMeshProUGUI textMeshPro, string text, float fontSize, bool richText)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.SetText(text);
+            textMeshPro.fontSize = fontSize;
+            textMeshPro.richText = richText;
+        }
+
+
+
         /// <summary>
         /// Sets the color of the text.
         /// </summary>
@@ -39,15 +90,60 @@ namespace Yunst.UGUI.Extension
         public static void SetTextWithColor(this TextMeshProUGUI textMeshPro, string message, Color color)
         {
             if (textMeshPro == null) return;
-            textMeshPro.text = message;
+            textMeshPro.SetText(message);
             textMeshPro.color = color;
         }
+
+        /// <summary>
+        /// Sets the text, color, and font size.
+        /// </summary>
+        /// <param name="message">The text to display.</param>
+        /// <param name="color">The color to set.</param>
+        /// <param name="fontSize">The font size to set.</param>
+        public static void SetTextWithColor(this TextMeshProUGUI textMeshPro, string message, Color color, float fontSize)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.SetText(message);
+            textMeshPro.color = color;
+            textMeshPro.fontSize = fontSize;
+        }
+
+        /// <summary>
+        /// Sets the text, color, and rich text option.
+        /// </summary>
+        /// <param name="message">The text to display.</param>
+        /// <param name="color">The color to set.</param>
+        /// <param name="richText">Whether to enable rich text.</param>
+        public static void SetTextWithColor(this TextMeshProUGUI textMeshPro, string message, Color color, bool richText)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.SetText(message);
+            textMeshPro.color = color;
+            textMeshPro.richText = richText;
+        }
+
+        /// <summary>
+        /// Sets the text, color, font size, and rich text option.
+        /// </summary>
+        /// <param name="message">The text to display.</param>
+        /// <param name="color">The color to set.</param>
+        /// <param name="fontSize">The font size to set.</param>
+        /// <param name="richText">Whether to enable rich text.</param>
+        public static void SetTextWithColor(this TextMeshProUGUI textMeshPro, string message, Color color, float fontSize, bool richText)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.SetText(message);
+            textMeshPro.color = color;
+            textMeshPro.fontSize = fontSize;
+            textMeshPro.richText = richText;
+        }
+        
+
+
+
         /// <summary>
         /// Smoothly changes the color to the target color over the given duration.
         /// </summary>
-        /// <para>Overloads:
-        /// <br/>SetToColorInGivenTime(targetColor, duration)
-        /// </para>
         /// <param name="targetColor">The target color.</param>
         /// <param name="duration">Duration of the transition in seconds.</param>
         public static void SetToColorInGivenTime(this TextMeshProUGUI textMeshPro, Color targetColor, float duration)
@@ -100,12 +196,65 @@ namespace Yunst.UGUI.Extension
         /// <param name="message">The text to display.</param>
         /// <param name="delay">Delay between each character in seconds.</param>
         public static void TypingCharacterAnim(this TextMeshProUGUI textMeshPro, string message, float delay = 0.1f)
-
         {
             if (textMeshPro == null) return;
             textMeshPro.text = string.Empty;
             textMeshPro.gameObject.SetActive(true);
             textMeshPro.StartCoroutine(TypeText(textMeshPro, message, delay));
+        }
+
+        /// <summary>
+        /// Animates the text to appear one character at a time, with rich text option.
+        /// </summary>
+        /// <param name="message">The text to display.</param>
+        /// <param name="delay">Delay between each character in seconds.</param>
+        /// <param name="richText">Whether the text is rich text.</param>
+        public static void TypingCharacterAnim(this TextMeshProUGUI textMeshPro, string message, float delay, bool richText)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.text = string.Empty;
+            textMeshPro.richText = richText;
+            textMeshPro.gameObject.SetActive(true);
+            textMeshPro.StartCoroutine(TypeText(textMeshPro, message, delay));
+        }
+
+        /// <summary>
+        /// Adds a typing character animation to the text.
+        /// </summary>
+        /// <param name="message">The text to display.</param>
+        /// <param name="delay">Delay between each character in seconds.</param>
+        public static void AddingTypingCharacterAnim(this TextMeshProUGUI textMeshPro, string message, float delay)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.StartCoroutine(TypeText(textMeshPro, message, delay));
+        }
+
+        /// <summary>
+        /// Adds a typing character animation to the text, with rich text option.
+        /// </summary>
+        /// <param name="message">The text to display.</param>
+        /// <param name="delay">Delay between each character in seconds.</param>
+        /// <param name="richText">Whether the text is rich text.</param>
+        public static void AddingTypingCharacterAnim(this TextMeshProUGUI textMeshPro, string message, float delay, bool richText)
+        {
+            if (textMeshPro == null) return;
+            textMeshPro.richText = richText;
+            textMeshPro.StartCoroutine(TypeText(textMeshPro, message, delay));
+        }
+
+        /// <summary>
+        /// Skips the current typing character animation and shows the full message.
+        /// </summary>
+        /// <param name="message">The text to display.</param>
+        public static void SkippingCurrentTypingCharacterAnim(this TextMeshProUGUI textMeshPro, string message)
+        {
+            if (textMeshPro == null) return;
+            var textmeshProCoroutine = textMeshPro.GetComponent<MonoBehaviour>();
+            if (textmeshProCoroutine != null)
+            {
+                textmeshProCoroutine.StopAllCoroutines();
+            }
+            textMeshPro.text = message; 
         }
 
         private static IEnumerator TypeText(TextMeshProUGUI textMeshPro, string message, float delay)
@@ -116,13 +265,10 @@ namespace Yunst.UGUI.Extension
                 yield return new WaitForSeconds(delay);
             }
         }
+
         /// <summary>
         /// Makes the text blink by changing its alpha over the given duration and blink count.
         /// </summary>
-        /// <para>Overloads:
-        /// <br/>BlinkText(duration, blinkCount)
-        /// <br/>BlinkText(duration) // Default blink count is 3
-        /// </para>
         /// <param name="duration">Duration of the blink in seconds.</param>
         /// <param name="blinkCount">Number of blinks.</param>
         public static void BlinkText(this TextMeshProUGUI textMeshPro, float duration, int blinkCount = 5)
@@ -131,6 +277,7 @@ namespace Yunst.UGUI.Extension
             if (textMeshPro == null) return;
             textMeshPro.StartCoroutine(BlinkCoroutine(textMeshPro, duration, blinkCount));
         }
+        
         /// <summary>
         /// Makes the text blink by changing its alpha over the given duration. Default blink count is 3.
         /// </summary>
@@ -144,10 +291,6 @@ namespace Yunst.UGUI.Extension
         /// <summary>
         /// Sets the text and makes it blink for the given duration and blink count.
         /// </summary>
-        /// <para>Overloads:
-        /// <br/>SetTextWithBlinkingEffect(message, duration, blinkCount)
-        /// <br/>SetTextWithBlinkingEffect(message, duration) // Default blink count is 3
-        /// </para>
         /// <param name="message">The text to display.</param>
         /// <param name="duration">Duration of the blink in seconds.</param>
         /// <param name="blinkCount">Number of blinks.</param>
@@ -159,7 +302,7 @@ namespace Yunst.UGUI.Extension
             textMeshPro.BlinkText(duration, blinkCount);
         }
         
-         /// <summary>
+        /// <summary>
         /// Sets the text and makes it blink for the given duration. Default blink count is 3.
         /// </summary>
         /// <param name="message">The text to display.</param>
@@ -219,11 +362,20 @@ namespace Yunst.UGUI.Extension
             textMeshPro.fontMaterial = newRuntimeMaterial;
         }
 
+        /// <summary>
+        /// Sets the font face material properties for color and softness.
+        /// </summary>
+        /// <param name="faceColor">Face color to set.</param>
+        /// <param name="softness">Outline softness value (0-1).</param>
         public static void SetFontFaceMaterial(this TextMeshProUGUI textMeshPro, Color faceColor, float softness)
         {
             SetFontFaceMaterial(textMeshPro, faceColor, softness, 0f); // Default dilate is 0
         }
 
+        /// <summary>
+        /// Sets the font face material property for color only.
+        /// </summary>
+        /// <param name="faceColor">Face color to set.</param>
         public static void SetFontFaceMaterial(this TextMeshProUGUI textMeshPro, Color faceColor)
         {
             SetFontFaceMaterial(textMeshPro, faceColor, 0f, 0f); // Default softness and dilate are 0
@@ -247,9 +399,7 @@ namespace Yunst.UGUI.Extension
 
         /// <summary>
         /// Adds a ContentSizeFitter to the RectTransform to automatically fit its content size.
-        /// <summary>
-        /// Returns the preferred width of the text without using ContentSizeFitter.
-        /// <returns>Preferred width in pixels.</returns>
+        /// </summary>
         public static void ContentWidthFitter(this TextMeshProUGUI textMeshPro)
         {
             if (textMeshPro == null) return;
