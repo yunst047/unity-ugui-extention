@@ -6,13 +6,23 @@ namespace Yunst.UGUI.Extension
 {
     public static class ImageExtensions
     {
-        public static void SetColor(this Image image, Color color)
+    /// <summary>
+    /// Sets the color of the image instantly.
+    /// </summary>
+    /// <param name="image">The image to set the color for.</param>
+    /// <param name="color">The color to set.</param>
+    public static void SetColor(this Image image, Color color)
         {
             if (image == null) return;
             image.color = color;
         }
 
-        public static void SetAlpha(this Image image, float alpha)
+    /// <summary>
+    /// Sets the alpha of the image instantly.
+    /// </summary>
+    /// <param name="image">The image to set the alpha for.</param>
+    /// <param name="alpha">The alpha value to set.</param>
+    public static void SetAlpha(this Image image, float alpha)
         {
             if (image == null) return;
             Color color = image.color;
@@ -21,37 +31,39 @@ namespace Yunst.UGUI.Extension
         }
 
 
-        /// <summary>
-        /// Smoothly changes the Image color to the target color over the given duration.
-        /// Do not call at the same time as SetToAlphaInGivenTime, as they will conflict.
-        /// <para>
-        /// Overloads:
-        /// <br/>SetToColorInGivenTime(Color targetColor, float duration)
-        /// <br/>SetToColorInGivenTime(float r, float g, float b, float a, float duration)
-        /// <br/>SetToColorInGivenTime(Color targetColor, float alpha, float duration)
-        /// </para>
-        /// </summary>
-        /// <param name="targetColor">Target color.</param>
-        /// <param name="duration">Duration of the transition.</param>
-        /// <param name="r">Red component (for overload).</param>
-        /// <param name="g">Green component (for overload).</param>
-        /// <param name="b">Blue component (for overload).</param>
-        /// <param name="a">Alpha component (for overload).</param>
-        /// <param name="alpha">Alpha value (for overload).</param>
-        public static void SetToColorInGivenTime(this Image image, Color targetColor, float duration)
+    /// <summary>
+    /// Smoothly changes the image color to the target color over the given duration.
+    /// </summary>
+    /// <param name="targetColor">Target color.</param>
+    /// <param name="duration">Duration of the transition in seconds.</param>
+    public static void SetToColorInGivenTime(this Image image, Color targetColor, float duration)
         {
             if (image == null) return;
             image.StartCoroutine(ChangeColorCoroutine(image, targetColor, duration));
         }
 
-        public static void SetToColorInGivenTime(this Image image, float r, float g, float b, float a, float duration)
+    /// <summary>
+    /// Smoothly changes the image color to the specified RGBA values over the given duration.
+    /// </summary>
+    /// <param name="r">Red component.</param>
+    /// <param name="g">Green component.</param>
+    /// <param name="b">Blue component.</param>
+    /// <param name="a">Alpha component.</param>
+    /// <param name="duration">Duration of the transition in seconds.</param>
+    public static void SetToColorInGivenTime(this Image image, float r, float g, float b, float a, float duration)
         {
             if (image == null) return;
             Color targetColor = new Color(r, g, b, a);
             image.StartCoroutine(ChangeColorCoroutine(image, targetColor, duration));
         }
 
-        public static void SetToColorInGivenTime(this Image image, Color targetColor, float alpha, float duration)
+    /// <summary>
+    /// Smoothly changes the image color to the target color and alpha over the given duration.
+    /// </summary>
+    /// <param name="targetColor">Target color.</param>
+    /// <param name="alpha">Alpha value.</param>
+    /// <param name="duration">Duration of the transition in seconds.</param>
+    public static void SetToColorInGivenTime(this Image image, Color targetColor, float alpha, float duration)
         {
             if (image == null) return;
             Color newTargetColor = new Color(targetColor.r, targetColor.g, targetColor.b, alpha);
