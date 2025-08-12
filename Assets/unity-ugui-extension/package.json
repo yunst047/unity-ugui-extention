@@ -1,6 +1,6 @@
 {
   "name": "com.yunst047.unity-ngui-extension",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "ngui-extension",
   "description": "Tools for enhancing Unity's NGUI system.",
   "repository": {
